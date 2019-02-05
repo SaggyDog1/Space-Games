@@ -1,0 +1,36 @@
+@setlocal enableextensions enabledelayedexpansion
+@echo off
+title movement
+color 0a
+
+set length=         
+set height= a
+
+:controls
+cls
+echo Use WASD to move your character ([]).
+echo.
+for %%a in ( %height% ) do echo.
+echo %length%[]
+choice /c wasd /n
+if %errorlevel% equ 1 call:up
+if %errorlevel% equ 2 call:left
+if %errorlevel% equ 3 call:down
+if %errorlevel% equ 4 call:right
+cls
+
+:left
+set length=!length:~0,-1!
+goto controls
+
+:right
+set length=%length% a
+goto control
+
+:up
+set height=!height:~0,-2!
+goto controls
+
+:down
+set height=%height% a
+goto control
